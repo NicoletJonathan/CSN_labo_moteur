@@ -1,0 +1,129 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "l_a1_o",
+					"strict" : false
+				},
+				{
+					"name" : "l_a2_o",
+					"strict" : false
+				},
+				{
+					"name" : "l_b1_o",
+					"strict" : false
+				},
+				{
+					"name" : "l_b2_o",
+					"strict" : false
+				},
+				{
+					"name" : "l_en_o",
+					"strict" : false
+				},
+				{
+					"name" : "m_a1_o",
+					"strict" : false
+				},
+				{
+					"name" : "m_a2_o",
+					"strict" : false
+				},
+				{
+					"name" : "m_b1_o",
+					"strict" : false
+				},
+				{
+					"name" : "m_b2_o",
+					"strict" : false
+				},
+				{
+					"name" : "m_en_o",
+					"strict" : false
+				},
+				{
+					"name" : "r_a1_o",
+					"strict" : false
+				},
+				{
+					"name" : "r_a2_o",
+					"strict" : false
+				},
+				{
+					"name" : "r_b1_o",
+					"strict" : false
+				},
+				{
+					"name" : "r_b2_o",
+					"strict" : false
+				},
+				{
+					"name" : "r_en_o",
+					"strict" : false
+				},
+				{
+					"name" : "en_bridge_i",
+					"strict" : false
+				},
+				{
+					"name" : "clk_i",
+					"strict" : false
+				},
+				{
+					"name" : "nRst_i",
+					"strict" : false
+				},
+				{
+					"name" : "cap_l_i",
+					"strict" : false
+				},
+				{
+					"name" : "run_l_i",
+					"strict" : false
+				},
+				{
+					"name" : "mode_i",
+					"strict" : false
+				},
+				{
+					"name" : "cap_m_i",
+					"strict" : false
+				},
+				{
+					"name" : "run_m_i",
+					"strict" : false
+				},
+				{
+					"name" : "run_r_i",
+					"strict" : false
+				},
+				{
+					"name" : "cap_r_i",
+					"strict" : false
+				},
+				{
+					"name" : "init_i",
+					"strict" : false
+				},
+				{
+					"name" : "start_i",
+					"strict" : false
+				},
+				{
+					"name" : "nb_tour_i[0]",
+					"strict" : false
+				},
+				{
+					"name" : "nb_tour_i[2]",
+					"strict" : false
+				},
+				{
+					"name" : "nb_tour_i[1]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

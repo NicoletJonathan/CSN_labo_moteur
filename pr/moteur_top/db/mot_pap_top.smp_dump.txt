@@ -1,0 +1,64 @@
+
+State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_r|phase_manager:MSS_stepper|current_state_s
+Name current_state_s.A_PLUS_B_MINUS current_state_s.A_OFF_B_MINUS current_state_s.A_MINUS_B_MINUS current_state_s.A_MINUS_B_OFF current_state_s.A_MINUS_B_PLUS current_state_s.A_OFF_B_PLUS current_state_s.A_PLUS_B_PLUS current_state_s.A_PLUS_B_OFF 
+current_state_s.A_PLUS_B_OFF 0 0 0 0 0 0 0 0 
+current_state_s.A_PLUS_B_PLUS 0 0 0 0 0 0 1 1 
+current_state_s.A_OFF_B_PLUS 0 0 0 0 0 1 0 1 
+current_state_s.A_MINUS_B_PLUS 0 0 0 0 1 0 0 1 
+current_state_s.A_MINUS_B_OFF 0 0 0 1 0 0 0 1 
+current_state_s.A_MINUS_B_MINUS 0 0 1 0 0 0 0 1 
+current_state_s.A_OFF_B_MINUS 0 1 0 0 0 0 0 1 
+current_state_s.A_PLUS_B_MINUS 1 0 0 0 0 0 0 1 
+
+State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_m|phase_manager:MSS_stepper|current_state_s
+Name current_state_s.A_PLUS_B_MINUS current_state_s.A_OFF_B_MINUS current_state_s.A_MINUS_B_MINUS current_state_s.A_MINUS_B_OFF current_state_s.A_MINUS_B_PLUS current_state_s.A_OFF_B_PLUS current_state_s.A_PLUS_B_PLUS current_state_s.A_PLUS_B_OFF 
+current_state_s.A_PLUS_B_OFF 0 0 0 0 0 0 0 0 
+current_state_s.A_PLUS_B_PLUS 0 0 0 0 0 0 1 1 
+current_state_s.A_OFF_B_PLUS 0 0 0 0 0 1 0 1 
+current_state_s.A_MINUS_B_PLUS 0 0 0 0 1 0 0 1 
+current_state_s.A_MINUS_B_OFF 0 0 0 1 0 0 0 1 
+current_state_s.A_MINUS_B_MINUS 0 0 1 0 0 0 0 1 
+current_state_s.A_OFF_B_MINUS 0 1 0 0 0 0 0 1 
+current_state_s.A_PLUS_B_MINUS 1 0 0 0 0 0 0 1 
+
+State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_l|phase_manager:MSS_stepper|current_state_s
+Name current_state_s.A_PLUS_B_MINUS current_state_s.A_OFF_B_MINUS current_state_s.A_MINUS_B_MINUS current_state_s.A_MINUS_B_OFF current_state_s.A_MINUS_B_PLUS current_state_s.A_OFF_B_PLUS current_state_s.A_PLUS_B_PLUS current_state_s.A_PLUS_B_OFF 
+current_state_s.A_PLUS_B_OFF 0 0 0 0 0 0 0 0 
+current_state_s.A_PLUS_B_PLUS 0 0 0 0 0 0 1 1 
+current_state_s.A_OFF_B_PLUS 0 0 0 0 0 1 0 1 
+current_state_s.A_MINUS_B_PLUS 0 0 0 0 1 0 0 1 
+current_state_s.A_MINUS_B_OFF 0 0 0 1 0 0 0 1 
+current_state_s.A_MINUS_B_MINUS 0 0 1 0 0 0 0 1 
+current_state_s.A_OFF_B_MINUS 0 1 0 0 0 0 0 1 
+current_state_s.A_PLUS_B_MINUS 1 0 0 0 0 0 0 1 
+
+State Machine - |mot_pap_top|cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s
+Name current_state_s.ERR current_state_s.AUTO_NEXT current_state_s.AUTO_DEC_TOUR current_state_s.AUTO_END_TOUR current_state_s.AUTO_DEC_SPEED current_state_s.AUTO_INC_SPEED current_state_s.AUTO_STOP current_state_s.AUTO_WAIT_CAP_HIGH current_state_s.AUTO_EN_RIGHT current_state_s.AUTO_EN_MIDDLE current_state_s.AUTO_EN_LEFT current_state_s.AUTO_WAIT_CAP_LOW current_state_s.AUTO_CHECK current_state_s.AUTO_INIT current_state_s.MAN_MIDDLE current_state_s.MAN_BOTH current_state_s.MAN_RIGHT current_state_s.MAN_LEFT current_state_s.MAN_STOP current_state_s.INIT_REQUEST current_state_s.INIT_LEFT current_state_s.INIT_TRY_LEFT current_state_s.INIT_RIGHT current_state_s.INIT_TRY_RIGHT current_state_s.INIT_MIDDLE current_state_s.INIT_TRY_MIDDLE current_state_s.INIT_SEQUENCE current_state_s.INIT 
+current_state_s.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+current_state_s.INIT_SEQUENCE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+current_state_s.INIT_TRY_MIDDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+current_state_s.INIT_MIDDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+current_state_s.INIT_TRY_RIGHT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+current_state_s.INIT_RIGHT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+current_state_s.INIT_TRY_LEFT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+current_state_s.INIT_LEFT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+current_state_s.INIT_REQUEST 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+current_state_s.MAN_STOP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+current_state_s.MAN_LEFT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+current_state_s.MAN_RIGHT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.MAN_BOTH 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.MAN_MIDDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_CHECK 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_WAIT_CAP_LOW 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_EN_LEFT 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_EN_MIDDLE 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_EN_RIGHT 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_WAIT_CAP_HIGH 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_STOP 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_INC_SPEED 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_DEC_SPEED 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_END_TOUR 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_DEC_TOUR 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.AUTO_NEXT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state_s.ERR 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

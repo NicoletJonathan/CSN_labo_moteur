@@ -139,7 +139,7 @@ begin
     --| Components instanciation |---------------------------------------------
     command_mot_pap : cmd_mot_pap
     generic map(
-        SIMULATION => false
+        SIMULATION : boolean := false
     )
     port map(
         clk_i       => clk_i,

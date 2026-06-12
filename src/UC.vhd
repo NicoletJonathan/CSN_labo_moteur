@@ -27,29 +27,44 @@ entity UC is
     port(
         clk_i                 : in  std_logic;
         rst_i                 : in  std_logic;
+            
+            -- Entrées externes
+            cap_l_i               : in  std_logic;
+            cap_m_i               : in  std_logic;
+            cap_r_i               : in  std_logic;
+            mode_i                : in  std_logic;
+            start_i               : in  std_logic;
+            init_i                : in  std_logic;
+            run_l_i               : in  std_logic;
+            run_m_i               : in  std_logic;
+            run_r_i               : in  std_logic;
 
+            -- Entrées d'état (venant de l'UT)
+            vitesse_max_i         : in  std_logic;
+            vitesse_min_i         : in  std_logic;
+            fin_de_tour_i         : in  std_logic;
+            tour_complet_i        : in  std_logic;
+            fin_seq_auto_i        : in  std_logic;
+            dernier_tour_i        : in  std_logic;
+            moteur_i              : in  std_logic_vector(1 downto 0);
 
-        -- to be complted
-		  cap_l_i               : in  std_logic;
-		  cap_m_i               : in  std_logic;
-		  cap_r_i               : in  std_logic;
-		  mode_i                : in  std_logic;
-		  start_i               : in  std_logic;
-		  init_i                : in  std_logic;
-		  nb_tour_i             : in  std_logic;
-		  run_l_i               : in  std_logic;
-		  run_m_i               : in  std_logic;
-		  run_r_i               : in  std_logic;
+            -- Sorties de commande (vers l'UT)
+            en_mot_m_o            : out std_logic;
+            en_mot_r_o            : out std_logic;
+            en_mot_l_o            : out std_logic;
+            en_mot_change_o       : out std_logic;
+            inc_moteur_o          : out std_logic;
+            load_moteur_o         : out std_logic;
+            dec_tour_o            : out std_logic;
+            load_tour_o           : out std_logic;
+            dec_vitesse_o         : out std_logic;
+            inc_vitesse_o         : out std_logic;
+            load_vitesse_o        : out std_logic;
+            inc_n_encoches_o      : out std_logic;
+            load_n_encoches_o     : out std_logic;
 
-		  en_mot_l_o            : out std_logic;
-		  dir_mot_l_o           : out std_logic;
-		  en_mot_m_o            : out std_logic;
-		  dir_mot_m_o           : out std_logic;
-		  en_mot_r_o            : out std_logic;
-		  dir_mot_r_o           : out std_logic;
-		  sel_speed_o           : out std_logic_vector(1 downto 0)
-
-
+            -- Sortie externe
+            err_o                 : out std_logic
 
     );
 end UC;
@@ -61,10 +76,17 @@ architecture fsm of UC is
     type state_t is (
         --General state
         INIT,
-        ....
+
 
         --Init sequence
-        INIT....  ,
+		  INIT_SEQUENCE,
+        INIT_TRY_MIDDLE,
+		  INIT_MIDDLE,
+		  INIT_TRY_RIGHT,
+		  INIT_RIGHT,
+		  INIT_TRY_LEFT,
+		  INIT_LEFT,
+		  INIT_REQUEST,
 
 
 
@@ -77,7 +99,19 @@ architecture fsm of UC is
 
         -- Mode Automatique
 
-        AUTO_... ,
+        AUTO_INIT,
+		  AUTO_CHECK,
+		  AUTO_WAIT_CAP_LOW,
+		  AUTO_EN_LEFT,
+		  AUTO_EN_MIDDLE,
+		  AUTO_EN_RIGHT,
+		  AUTO_WAIT_CAP_HIGH,
+		  AUTO_STOP,
+		  AUTO_INC_SPEED,
+		  AUTO_DEC_SPEED,
+		  AUTO_END_TOUR,
+		  AUTO_DEC_TOUR,
+		  AUTO_NEXT,
 
 
         -- Error
@@ -96,14 +130,6 @@ architecture fsm of UC is
 
 begin
 
-		en_mot_l_o  <= '0';
-		en_mot_m_o  <= '0';
-		en_mot_r_o  <= '0';
-		dir_mot_l_o <= '0';
-		dir_mot_m_o <= '0';
-		dir_mot_r_o <= '0';
-		sel_speed_o <= "00";
-		next_state_s <= INIT;
     --| Update state proc |----------------------------------------------------
     -- This process update the state of the state machine
     fsm_reg : process(clk_i, rst_i) is
@@ -117,36 +143,137 @@ begin
     ---------------------------------------------------------------------------
 
     --| Decodeur etats futures et sorties |---------------------------------------------------
-    dec_fut_sort : process(current_state_s,
+    dec_fut_sort : process(current_state_s) 
                                             -- all inputs,  to be complted                    ) is
     begin
         -- Default values for generated signal
         next_state_s       <= INIT;
-
-        -- to be complted
-        -- all output  <= '0' or '1';  -- selon votre choix de valeur par defaut
+		  
+		  en_mot_m_o        <= '0';
+en_mot_r_o        <= '0';
+en_mot_l_o        <= '0';
+en_mot_change_o   <= '0';
+inc_moteur_o      <= '0';
+load_moteur_o     <= '0';
+dec_tour_o        <= '0';
+load_tour_o       <= '0';
+dec_vitesse_o     <= '0';
+inc_vitesse_o     <= '0';
+load_vitesse_o    <= '0';
+inc_n_encoches_o  <= '0';
+load_n_encoches_o <= '0';
+err_o             <= '0';
+			
+        
 
         case(current_state_s) is
         --| Init |-------------------------------------------------------------
             when INIT =>
+					en_mot_change_o <= '1';
+               next_state_s <= INIT_SEQUENCE;
 
-               -- to be complted
-               next_state_s <= ....  ;
-
-            when .....  =>
 
 
         --| Init sequence |----------------------------------------------------
-
-
+            when INIT_SEQUENCE =>
+                en_mot_change_o <= '1';
+                -- Vérification initiale du cas de Deadlock (blocage mécanique total)
+                if(cap_m_i = '1' and (cap_l_i = '1' or cap_r_i = '1')) then
+                    next_state_s <= ERR;
+                else
+                    next_state_s <= INIT_TRY_MIDDLE;
+                end if;
+ 
+            when INIT_TRY_MIDDLE =>
+                en_mot_change_o <= '1';
+                if(cap_m_i = '1') then
+                    next_state_s <= INIT_MIDDLE;
+                else
+                    next_state_s <= INIT_TRY_RIGHT;
+                end if;
+ 
+            when INIT_MIDDLE =>
+                en_mot_change_o <= '1';
+                
+                -- BLINDAGE CSN : Sécurité active continue. 
+                -- Le moteur Milieu ne tourne QUE SI Gauche et Droite sont alignés ('0')
+                if(cap_l_i = '1' or cap_r_i = '1') then
+                    next_state_s <= ERR;
+						  en_mot_m_o <= '0';
+                elsif(cap_m_i = '1') then
+                    next_state_s <= INIT_MIDDLE;
+						  en_mot_m_o <= '1';
+                else
+                    next_state_s <= INIT_TRY_RIGHT;
+                end if;
+ 
+            when INIT_TRY_RIGHT =>
+                en_mot_change_o <= '1';
+                if(cap_r_i = '1') then
+                    next_state_s <= INIT_RIGHT;
+                else
+                    next_state_s <= INIT_TRY_LEFT;
+                end if;
+ 
+            when INIT_RIGHT =>
+                en_mot_change_o <= '1';
+                en_mot_r_o <= '1';
+                -- BLINDAGE CSN : Sécurité active continue. 
+                -- Le moteur Droite ne tourne QUE SI Milieu est aligné ('0')
+                if(cap_m_i = '1') then
+                    next_state_s <= ERR;
+                elsif(cap_r_i = '1') then
+                    next_state_s <= INIT_RIGHT;
+                else
+                    next_state_s <= INIT_TRY_LEFT;
+                end if;
+ 
+            when INIT_TRY_LEFT =>
+                en_mot_change_o <= '1';
+                if(cap_l_i = '1') then
+                    next_state_s <= INIT_LEFT;
+                else
+                    next_state_s <= INIT_REQUEST;
+                end if;
+ 
+            when INIT_LEFT =>
+                en_mot_change_o <= '1';
+                en_mot_l_o <= '1';
+                -- BLINDAGE CSN : Sécurité active continue. 
+                -- Le moteur Gauche ne tourne QUE SI Milieu est aligné ('0')
+                if(cap_m_i = '1') then
+                    next_state_s <= ERR;
+                elsif(cap_l_i = '1') then
+                    next_state_s <= INIT_LEFT;
+                else
+                    next_state_s <= INIT_REQUEST;
+                end if;
+				
+				when INIT_REQUEST =>
+					
+					en_mot_change_o <= '1';
+					
+					if(init_i = '1') then
+						next_state_s <= INIT_SEQUENCE;
+					elsif(mode_i = '0') then
+						next_state_s <= MAN_STOP;
+					elsif(start_i = '0') then
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_l_i = '0' and cap_m_i = '0' and cap_r_i = '0') then
+						next_state_s <= AUTO_INIT;
+					else
+						next_state_s <= INIT_SEQUENCE;
+					end if;
+				
 
         --| Manual sequence |--------------------------------------------------
 				when MAN_STOP =>
-					en_mot_l_o <= '0';
-					en_mot_m_o <= '0';
-					en_mot_r_o <= '0';
 					
-					if(cap_m_i = '0' and run_l_i = '1' and run_m_i = '0' and run_r_i = '0') then
+					en_mot_change_o <= '1';
+					
+					if(mode_i = '1') then
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_m_i = '0' and run_l_i = '1' and run_m_i = '0' and run_r_i = '0') then
 						next_state_s <= MAN_LEFT;
 					elsif(cap_m_i = '0' and run_l_i = '0' and run_m_i = '0' and run_r_i = '1') then
 						next_state_s <= MAN_RIGHT;
@@ -160,14 +287,13 @@ begin
 					end if;
 				
 				when MAN_LEFT =>
+				
+				   en_mot_change_o <= '1';
 					en_mot_l_o <= '1';
-					en_mot_m_o <= '0';
-					en_mot_r_o <= '0';
 					
-					dir_mot_l_o <= '0';
-					sel_speed_o <= "00";
-					
-					if(cap_m_i = '1' or run_l_i = '0' or run_m_i = '1') then
+					if(mode_i = '1') then 
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_m_i = '1' or run_l_i = '0' or run_m_i = '1') then
 						next_state_s <= MAN_STOP;
 					elsif(cap_m_i = '0' and run_l_i = '1' and run_m_i = '0' and run_r_i = '1') then
 						next_state_s <= MAN_BOTH;
@@ -176,15 +302,14 @@ begin
 					end if;
 					
 				when MAN_BOTH =>
+				
+				   en_mot_change_o <= '1';
 					en_mot_l_o <= '1';
-					en_mot_m_o <= '0';
 					en_mot_r_o <= '1';
-					
-					dir_mot_l_o <= '0';
-					dir_mot_r_o <= '0';
-					sel_speed_o <= "00";
-					
-					if(cap_m_i = '1' or run_m_i = '1' or (run_l_i = '0' and run_r_i = '0')) then
+
+					if(mode_i = '1') then 
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_m_i = '1' or run_m_i = '1' or (run_l_i = '0' and run_r_i = '0')) then
 						next_state_s <= MAN_STOP;
 					elsif(cap_m_i = '0' and run_l_i = '1' and run_m_i = '0' and run_r_i = '0') then
 						next_state_s <= MAN_LEFT;
@@ -195,14 +320,13 @@ begin
 					end if;
 					
 				when MAN_RIGHT =>
-					en_mot_l_o <= '0';
-					en_mot_m_o <= '0';
+				
+					en_mot_change_o <= '1';
 					en_mot_r_o <= '1';
 					
-					dir_mot_r_o <= '0';
-					sel_speed_o <= "00";
-					
-					if(cap_m_i = '1' or run_r_i = '0' or run_m_i = '1') then
+					if(mode_i = '1') then 
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_m_i = '1' or run_r_i = '0' or run_m_i = '1') then
 						next_state_s <= MAN_STOP;
 					elsif(cap_m_i = '0' and run_l_i = '1' and run_m_i = '0' and run_r_i = '1') then
 						next_state_s <= MAN_BOTH;
@@ -211,14 +335,13 @@ begin
 					end if;
 					
 				when MAN_MIDDLE =>
-					en_mot_l_o <= '0';
+					
+					en_mot_change_o <= '1';
 					en_mot_m_o <= '1';
-					en_mot_r_o <= '0';
 					
-					dir_mot_m_o <= '0';
-					sel_speed_o <= "00";
-					
-					if(cap_l_i = '1' or cap_r_i = '1' or run_l_i = '1' 
+					if(mode_i = '1') then 
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_l_i = '1' or cap_r_i = '1' or run_l_i = '1' 
 						or run_m_i = '0' or run_r_i = '1') then
 						next_state_s <= MAN_STOP;
 					else
@@ -226,17 +349,127 @@ begin
 					end if;
 						
         --| Automatic sequence |-----------------------------------------------
+				when AUTO_INIT =>
+					load_tour_o <= '1';
+					load_vitesse_o <= '1';
+					load_n_encoches_o <= '1';
+					load_moteur_o <= '1';
+					
+				next_state_s <= AUTO_CHECK;
+					
+				when AUTO_CHECK =>
+					
+					en_mot_change_o <= '1';
+					
+					if(fin_de_tour_i = '1') then
+						next_state_s <= INIT_REQUEST;
+					elsif(cap_r_i = '1' or cap_l_i = '1') then
+						next_state_s <= ERR;
+					else
+						next_state_s <= AUTO_WAIT_CAP_LOW;
+					end if;
+					
+				when AUTO_WAIT_CAP_LOW =>
+					
+					if(cap_m_i = '0' and moteur_i = "00") then
+						next_state_s <= AUTO_EN_MIDDLE;
+					elsif(cap_l_i = '0' and moteur_i = "01") then
+						next_state_s <= AUTO_EN_LEFT;
+					elsif(cap_r_i = '0' and moteur_i = "10") then
+						next_state_s <= AUTO_EN_RIGHT;
+					else
+						next_state_s <= AUTO_WAIT_CAP_LOW;
+					end if;
+					
+				when AUTO_EN_LEFT => 
+				
+					en_mot_change_o <= '1';
+					en_mot_l_o <= '1';
+					
+					next_state_s <= AUTO_WAIT_CAP_HIGH;
+					
+				when AUTO_EN_MIDDLE => 
+				
+					en_mot_change_o <= '1';
+					en_mot_m_o <= '1';
+					
+					next_state_s <= AUTO_WAIT_CAP_HIGH;
+					
+				when AUTO_EN_RIGHT => 
+				
+					en_mot_change_o <= '1';
+					en_mot_r_o <= '1';
+					
+					next_state_s <= AUTO_WAIT_CAP_HIGH;
 
+				when AUTO_WAIT_CAP_HIGH =>
+					if(cap_l_i = '0' and cap_m_i = '0' and cap_r_i = '0') then
+						next_state_s <= AUTO_STOP;
+					else
+						next_state_s <= AUTO_WAIT_CAP_HIGH;
+					end if;
+						
+				when AUTO_STOP =>
+				
+					en_mot_change_o <= '1';
+					
+					if(dernier_tour_i = '0' and vitesse_max_i = '0') then
+						next_state_s <= AUTO_INC_SPEED;
+					elsif(dernier_tour_i = '1' and vitesse_min_i = '0') then
+						next_state_s <= AUTO_DEC_SPEED;
+					else
+						next_state_s <= AUTO_END_TOUR;
+					end if;
+				
+				when AUTO_INC_SPEED =>
+					
+					inc_vitesse_o <= '1';
+					
+					next_state_s <= AUTO_WAIT_CAP_LOW;
+				
+				when AUTO_DEC_SPEED =>
+					
+					dec_vitesse_o <= '1';
+				
+					next_state_s <= AUTO_WAIT_CAP_LOW;
+				
+				when AUTO_END_TOUR =>
+					if(tour_complet_i = '0') then
+						next_state_s <= AUTO_WAIT_CAP_LOW;
+					elsif(cap_m_i = '1') then 
+						next_state_s <= ERR;
+					elsif(fin_seq_auto_i = '1') then
+						next_state_s <= INIT_REQUEST;
+					else
+						next_state_s <= AUTO_NEXT;
+					end if;
 
+				when AUTO_NEXT =>
+					
+					inc_moteur_o <= '1';
+					load_tour_o <= '1';
+					
+					next_state_s <= AUTO_WAIT_CAP_LOW;
+				
         --| Error |-----------------------------------------------------------
 
             when ERR =>
+					en_mot_change_o <= '1';
+					en_mot_m_o <= '0';	
+					en_mot_r_o <= '0';
+					en_mot_l_o <= '0';
+					
+					if(init_i = '0' or (cap_m_i = '1' and (cap_l_i = '1' or cap_r_i = '1'))) then
+						next_state_s <= ERR;
+					else
+						next_state_s <= INIT_SEQUENCE;
+					end if;
 
 
         --| For others state |-------------------------------------------------
             when others =>
                -- others signals at default value
-               next_state_s <= ....  ;
+               next_state_s <= INIT;
 
         end case;
     end process dec_fut_sort;

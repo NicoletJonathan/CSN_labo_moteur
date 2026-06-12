@@ -88,21 +88,7 @@ architecture struct of cmd_mot_pap is
     signal tour_complet_s        : std_logic;
     signal dernier_tour_s        : std_logic;
     signal fin_seq_auto_s        : std_logic;
-    signal moteur_s              : std_logic_vector(1 downto 0);
-    
-    -- Signaux  
-    signal cap_l_s                : std_logic;
-    signal cap_m_s                : std_logic;
-    signal cap_r_s                : std_logic;
-    signal mode_s                 : std_logic;
-    signal start_s                : std_logic;
-    signal init_s                 : std_logic;
-    signal nb_tour_s              : std_logic_vector(2 downto 0);
-    signal run_l_s                : std_logic;
-    signal run_m_s                : std_logic;
-    signal run_r_s                : std_logic;
-    signal reg_pres_s             : std_logic_vector(11 downto 0);
-    signal reg_fut_s              : std_logic_vector(11 downto 0);
+
 
     ---------------------------------------------------------------------------
 
@@ -119,9 +105,6 @@ architecture struct of cmd_mot_pap is
             mode_i                : in  std_logic;
             start_i               : in  std_logic;
             init_i                : in  std_logic;
-            run_l_i               : in  std_logic;
-            run_m_i               : in  std_logic;
-            run_r_i               : in  std_logic;
 
             -- Entrées d'état (venant de l'UT)
             vitesse_max_i         : in  std_logic;
@@ -129,8 +112,6 @@ architecture struct of cmd_mot_pap is
             fin_de_tour_i         : in  std_logic;
             tour_complet_i        : in  std_logic;
             fin_seq_auto_i        : in  std_logic;
-				dernier_tour_i        : in  std_logic;
-            moteur_i              : std_logic_vector(1 downto 0);
 
             -- Sorties de commande (vers l'UT)
             en_mot_m_o            : out std_logic;
@@ -161,6 +142,9 @@ architecture struct of cmd_mot_pap is
             -- Entrées de Configuration (Extérieur -> UT)
             mode_i                : in  std_logic;
             nb_tour_i             : in  std_logic_vector(2 downto 0);
+            run_l_i               : in  std_logic;
+            run_m_i               : in  std_logic;
+            run_r_i               : in  std_logic;
 
             -- Commandes de l'UC (UC -> UT)
             en_mot_m_i            : in  std_logic;
@@ -187,7 +171,6 @@ architecture struct of cmd_mot_pap is
 
             -- Sorties Physiques Moteurs (UT -> Top)
             vitesse_o             : out std_logic_vector(1 downto 0);
-				moteur_o             : out std_logic_vector(1 downto 0);
 
             --Contrainte : l'activation des moteurs est fait depuis l'UT
             --L'UT aura des elements memoires pour ces actions commandees par l'UC
@@ -205,27 +188,11 @@ architecture struct of cmd_mot_pap is
 begin
     --| Bloc de pre-traitement des entrees |------------------------------------
 
-    reg_fut_s <= cap_l_i & cap_m_i & cap_r_i & mode_i & start_i & init_i & nb_tour_i & run_l_i & run_m_i & run_r_i;
- 
-    synchro : process (clk_i, rst_i)
-    begin
-        if rst_i = '1' then
-     reg_pres_s <= (others => '0');
- elsif rising_edge(clk_i) then
-     reg_pres_s <= reg_fut_s;
- end if;
-    end process;
-    
-    cap_l_s   <= reg_pres_s(11);
-    cap_m_s   <= reg_pres_s(10);
-    cap_r_s   <= reg_pres_s(9);
-    mode_s    <= reg_pres_s(8);
-    start_s   <= reg_pres_s(7);
-    init_s    <= reg_pres_s(6);
-    nb_tour_s <= reg_pres_s(5 downto 3);
-    run_l_s   <= reg_pres_s(2);
-    run_m_s   <= reg_pres_s(1);
-    run_r_s   <= reg_pres_s(0);
+
+
+    -- to be completed
+
+
 
     --| Components instanciation |---------------------------------------------
     UC_inst : UC
@@ -233,22 +200,18 @@ begin
         clk_i                 => clk_i,
         rst_i                 => rst_i,
         
-        cap_l_i               => cap_l_s,
-        cap_m_i               => cap_m_s,
-        cap_r_i               => cap_r_s,
-        mode_i                => mode_s,
-        start_i               => start_s,
-        init_i                => init_s,
-		  run_l_i               => run_l_s,
-		  run_m_i               => run_m_s,
-		  run_r_i               => run_r_s,
+        cap_l_i               => cap_l_i,
+        cap_m_i               => cap_m_i,
+        cap_r_i               => cap_r_i,
+        mode_i                => mode_i,
+        start_i               => start_i,
+        init_i                => init_i,
         vitesse_max_i         => vitesse_max_s,
         vitesse_min_i         => vitesse_min_s,
         fin_de_tour_i         => fin_de_tour_s,
         tour_complet_i        => tour_complet_s,
         dernier_tour_i        => dernier_tour_s,
         fin_seq_auto_i        => fin_seq_auto_s,
-        moteur_i              => moteur_s,
         en_mot_m_o            => en_mot_m_s,
         en_mot_r_o            => en_mot_r_s,
         en_mot_l_o            => en_mot_l_s,
@@ -270,8 +233,11 @@ begin
         clk_i                 => clk_i,
         rst_i                 => rst_i,
 
-        mode_i                => mode_s,
-        nb_tour_i             => nb_tour_s,
+        mode_i                => mode_i,
+        nb_tour_i             => nb_tour_i,
+        run_l_i               => run_l_i,
+        run_m_i               => run_m_i,
+        run_r_i               => run_r_i,
         en_mot_m_i            => en_mot_m_s,
         en_mot_r_i            => en_mot_r_s,
         en_mot_l_i            => en_mot_l_s,
@@ -290,9 +256,9 @@ begin
         fin_de_tour_o         => fin_de_tour_s,
         tour_complet_o        => tour_complet_s,
         dernier_tour_o        => dernier_tour_s,
+        dernier_tour_o        => dernier_tour_s,
         fin_seq_auto_o        => fin_seq_auto_s,
-        moteur_o              => moteur_s,
-        vitesse_o             => sel_speed_o,
+        vitesse_o             => sel_speed_s
 
         en_l_o                => en_l_s,
         en_m_o                => en_m_s,

@@ -119,9 +119,6 @@ architecture struct of cmd_mot_pap is
             mode_i                : in  std_logic;
             start_i               : in  std_logic;
             init_i                : in  std_logic;
-            run_l_i               : in  std_logic;
-            run_m_i               : in  std_logic;
-            run_r_i               : in  std_logic;
 
             -- Entrées d'état (venant de l'UT)
             vitesse_max_i         : in  std_logic;
@@ -239,9 +236,6 @@ begin
         mode_i                => mode_s,
         start_i               => start_s,
         init_i                => init_s,
-		  run_l_i               => run_l_s,
-		  run_m_i               => run_m_s,
-		  run_r_i               => run_r_s,
         vitesse_max_i         => vitesse_max_s,
         vitesse_min_i         => vitesse_min_s,
         fin_de_tour_i         => fin_de_tour_s,

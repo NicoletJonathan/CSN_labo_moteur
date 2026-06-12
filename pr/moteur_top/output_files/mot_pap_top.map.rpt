@@ -1,0 +1,711 @@
+Analysis & Synthesis report for mot_pap_top
+Fri Jun 12 18:53:30 2026
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_r|phase_manager:MSS_stepper|current_state_s
+  9. State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_m|phase_manager:MSS_stepper|current_state_s
+ 10. State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_l|phase_manager:MSS_stepper|current_state_s
+ 11. State Machine - |mot_pap_top|cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Parameter Settings for User Entity Instance: cmd_mot_pap:command_mot_pap
+ 17. Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_l
+ 18. Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn
+ 19. Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_m
+ 20. Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn
+ 21. Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_r
+ 22. Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn
+ 23. Port Connectivity Checks: "controller_mot_pap:ctrl_mot_r"
+ 24. Port Connectivity Checks: "controller_mot_pap:ctrl_mot_m"
+ 25. Port Connectivity Checks: "controller_mot_pap:ctrl_mot_l"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Jun 12 18:53:30 2026           ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name                      ; mot_pap_top                                     ;
+; Top-level Entity Name              ; mot_pap_top                                     ;
+; Family                             ; MAX 10                                          ;
+; Total logic elements               ; 155                                             ;
+;     Total combinational functions  ; 120                                             ;
+;     Dedicated logic registers      ; 88                                              ;
+; Total registers                    ; 88                                              ;
+; Total pins                         ; 31                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
+; UFM blocks                         ; 0                                               ;
+; ADC blocks                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M08DAF484C8G     ;                    ;
+; Top-level entity name                                            ; mot_pap_top        ; mot_pap_top        ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 5           ;
+; Maximum allowed            ; 5           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 5           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-5         ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                     ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                              ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
+; ../../src/phase_manager.vhd      ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/phase_manager.vhd      ;         ;
+; ../../src/gen_top_sgn_mot.vhd    ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/gen_top_sgn_mot.vhd    ;         ;
+; ../../src/cmd_mot_pap.vhd        ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/cmd_mot_pap.vhd        ;         ;
+; ../../src/mot_pap_top.vhd        ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd        ;         ;
+; ../../src/controller_mot_pap.vhd ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/controller_mot_pap.vhd ;         ;
+; ../../src/UC.vhd                 ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/UC.vhd                 ;         ;
+; ../../src/UT.vhd                 ; yes             ; User VHDL File  ; /home/reds/csn/CSN_labo_moteur/src/UT.vhd                 ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 155         ;
+;                                             ;             ;
+; Total combinational functions               ; 120         ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 46          ;
+;     -- 3 input functions                    ; 35          ;
+;     -- <=2 input functions                  ; 39          ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 101         ;
+;     -- arithmetic mode                      ; 19          ;
+;                                             ;             ;
+; Total registers                             ; 88          ;
+;     -- Dedicated logic registers            ; 88          ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 31          ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clk_i~input ;
+; Maximum fan-out                             ; 88          ;
+; Total fan-out                               ; 701         ;
+; Average fan-out                             ; 2.60        ;
++---------------------------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                ;
++------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                  ; Entity Name        ; Library Name ;
++------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------+--------------------+--------------+
+; |mot_pap_top                       ; 120 (0)             ; 88 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 31   ; 0            ; 0          ; |mot_pap_top                                                         ; mot_pap_top        ; work         ;
+;    |cmd_mot_pap:command_mot_pap|   ; 57 (0)              ; 44 (12)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|cmd_mot_pap:command_mot_pap                             ; cmd_mot_pap        ; work         ;
+;       |UC:UC_inst|                 ; 52 (52)             ; 24 (24)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|cmd_mot_pap:command_mot_pap|UC:UC_inst                  ; UC                 ; work         ;
+;       |UT:UT_inst|                 ; 5 (5)               ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|cmd_mot_pap:command_mot_pap|UT:UT_inst                  ; UT                 ; work         ;
+;    |controller_mot_pap:ctrl_mot_l| ; 49 (1)              ; 28 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_l                           ; controller_mot_pap ; work         ;
+;       |gen_top_sgn_mot:top_sgn|    ; 42 (42)             ; 20 (20)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn   ; gen_top_sgn_mot    ; work         ;
+;       |phase_manager:MSS_stepper|  ; 6 (6)               ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_l|phase_manager:MSS_stepper ; phase_manager      ; work         ;
+;    |controller_mot_pap:ctrl_mot_m| ; 7 (1)               ; 8 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_m                           ; controller_mot_pap ; work         ;
+;       |phase_manager:MSS_stepper|  ; 6 (6)               ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_m|phase_manager:MSS_stepper ; phase_manager      ; work         ;
+;    |controller_mot_pap:ctrl_mot_r| ; 7 (1)               ; 8 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_r                           ; controller_mot_pap ; work         ;
+;       |phase_manager:MSS_stepper|  ; 6 (6)               ; 8 (8)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |mot_pap_top|controller_mot_pap:ctrl_mot_r|phase_manager:MSS_stepper ; phase_manager      ; work         ;
++------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------+--------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_r|phase_manager:MSS_stepper|current_state_s                                                                                                                                                                                              ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+; Name                            ; current_state_s.A_PLUS_B_MINUS ; current_state_s.A_OFF_B_MINUS ; current_state_s.A_MINUS_B_MINUS ; current_state_s.A_MINUS_B_OFF ; current_state_s.A_MINUS_B_PLUS ; current_state_s.A_OFF_B_PLUS ; current_state_s.A_PLUS_B_PLUS ; current_state_s.A_PLUS_B_OFF ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+; current_state_s.A_PLUS_B_OFF    ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 0                            ;
+; current_state_s.A_PLUS_B_PLUS   ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 1                             ; 1                            ;
+; current_state_s.A_OFF_B_PLUS    ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 1                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_PLUS  ; 0                              ; 0                             ; 0                               ; 0                             ; 1                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_OFF   ; 0                              ; 0                             ; 0                               ; 1                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_MINUS ; 0                              ; 0                             ; 1                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_OFF_B_MINUS   ; 0                              ; 1                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_PLUS_B_MINUS  ; 1                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_m|phase_manager:MSS_stepper|current_state_s                                                                                                                                                                                              ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+; Name                            ; current_state_s.A_PLUS_B_MINUS ; current_state_s.A_OFF_B_MINUS ; current_state_s.A_MINUS_B_MINUS ; current_state_s.A_MINUS_B_OFF ; current_state_s.A_MINUS_B_PLUS ; current_state_s.A_OFF_B_PLUS ; current_state_s.A_PLUS_B_PLUS ; current_state_s.A_PLUS_B_OFF ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+; current_state_s.A_PLUS_B_OFF    ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 0                            ;
+; current_state_s.A_PLUS_B_PLUS   ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 1                             ; 1                            ;
+; current_state_s.A_OFF_B_PLUS    ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 1                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_PLUS  ; 0                              ; 0                             ; 0                               ; 0                             ; 1                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_OFF   ; 0                              ; 0                             ; 0                               ; 1                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_MINUS ; 0                              ; 0                             ; 1                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_OFF_B_MINUS   ; 0                              ; 1                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_PLUS_B_MINUS  ; 1                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |mot_pap_top|controller_mot_pap:ctrl_mot_l|phase_manager:MSS_stepper|current_state_s                                                                                                                                                                                              ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+; Name                            ; current_state_s.A_PLUS_B_MINUS ; current_state_s.A_OFF_B_MINUS ; current_state_s.A_MINUS_B_MINUS ; current_state_s.A_MINUS_B_OFF ; current_state_s.A_MINUS_B_PLUS ; current_state_s.A_OFF_B_PLUS ; current_state_s.A_PLUS_B_PLUS ; current_state_s.A_PLUS_B_OFF ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+; current_state_s.A_PLUS_B_OFF    ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 0                            ;
+; current_state_s.A_PLUS_B_PLUS   ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 1                             ; 1                            ;
+; current_state_s.A_OFF_B_PLUS    ; 0                              ; 0                             ; 0                               ; 0                             ; 0                              ; 1                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_PLUS  ; 0                              ; 0                             ; 0                               ; 0                             ; 1                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_OFF   ; 0                              ; 0                             ; 0                               ; 1                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_MINUS_B_MINUS ; 0                              ; 0                             ; 1                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_OFF_B_MINUS   ; 0                              ; 1                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
+; current_state_s.A_PLUS_B_MINUS  ; 1                              ; 0                             ; 0                               ; 0                             ; 0                              ; 0                            ; 0                             ; 1                            ;
++---------------------------------+--------------------------------+-------------------------------+---------------------------------+-------------------------------+--------------------------------+------------------------------+-------------------------------+------------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |mot_pap_top|cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ;
++------------------------------------+---------------------+---------------------------+-------------------------------+-------------------------------+--------------------------------+--------------------------------+---------------------------+------------------------------------+-------------------------------+--------------------------------+------------------------------+-----------------------------------+----------------------------+---------------------------+----------------------------+--------------------------+---------------------------+--------------------------+--------------------------+------------------------------+---------------------------+-------------------------------+----------------------------+--------------------------------+-----------------------------+---------------------------------+-------------------------------+----------------------+
+; Name                               ; current_state_s.ERR ; current_state_s.AUTO_NEXT ; current_state_s.AUTO_DEC_TOUR ; current_state_s.AUTO_END_TOUR ; current_state_s.AUTO_DEC_SPEED ; current_state_s.AUTO_INC_SPEED ; current_state_s.AUTO_STOP ; current_state_s.AUTO_WAIT_CAP_HIGH ; current_state_s.AUTO_EN_RIGHT ; current_state_s.AUTO_EN_MIDDLE ; current_state_s.AUTO_EN_LEFT ; current_state_s.AUTO_WAIT_CAP_LOW ; current_state_s.AUTO_CHECK ; current_state_s.AUTO_INIT ; current_state_s.MAN_MIDDLE ; current_state_s.MAN_BOTH ; current_state_s.MAN_RIGHT ; current_state_s.MAN_LEFT ; current_state_s.MAN_STOP ; current_state_s.INIT_REQUEST ; current_state_s.INIT_LEFT ; current_state_s.INIT_TRY_LEFT ; current_state_s.INIT_RIGHT ; current_state_s.INIT_TRY_RIGHT ; current_state_s.INIT_MIDDLE ; current_state_s.INIT_TRY_MIDDLE ; current_state_s.INIT_SEQUENCE ; current_state_s.INIT ;
++------------------------------------+---------------------+---------------------------+-------------------------------+-------------------------------+--------------------------------+--------------------------------+---------------------------+------------------------------------+-------------------------------+--------------------------------+------------------------------+-----------------------------------+----------------------------+---------------------------+----------------------------+--------------------------+---------------------------+--------------------------+--------------------------+------------------------------+---------------------------+-------------------------------+----------------------------+--------------------------------+-----------------------------+---------------------------------+-------------------------------+----------------------+
+; current_state_s.INIT               ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 0                    ;
+; current_state_s.INIT_SEQUENCE      ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 1                             ; 1                    ;
+; current_state_s.INIT_TRY_MIDDLE    ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 1                               ; 0                             ; 1                    ;
+; current_state_s.INIT_MIDDLE        ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 1                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.INIT_TRY_RIGHT     ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 1                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.INIT_RIGHT         ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 1                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.INIT_TRY_LEFT      ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 1                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.INIT_LEFT          ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 1                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.INIT_REQUEST       ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 1                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.MAN_STOP           ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 1                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.MAN_LEFT           ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 1                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.MAN_RIGHT          ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 1                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.MAN_BOTH           ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 1                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.MAN_MIDDLE         ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 1                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_INIT          ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 1                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_CHECK         ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 1                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_WAIT_CAP_LOW  ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 1                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_EN_LEFT       ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 1                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_EN_MIDDLE     ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 1                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_EN_RIGHT      ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 1                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_WAIT_CAP_HIGH ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 1                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_STOP          ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 1                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_INC_SPEED     ; 0                   ; 0                         ; 0                             ; 0                             ; 0                              ; 1                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_DEC_SPEED     ; 0                   ; 0                         ; 0                             ; 0                             ; 1                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_END_TOUR      ; 0                   ; 0                         ; 0                             ; 1                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_DEC_TOUR      ; 0                   ; 0                         ; 1                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.AUTO_NEXT          ; 0                   ; 1                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
+; current_state_s.ERR                ; 1                   ; 0                         ; 0                             ; 0                             ; 0                              ; 0                              ; 0                         ; 0                                  ; 0                             ; 0                              ; 0                            ; 0                                 ; 0                          ; 0                         ; 0                          ; 0                        ; 0                         ; 0                        ; 0                        ; 0                            ; 0                         ; 0                             ; 0                          ; 0                              ; 0                           ; 0                               ; 0                             ; 1                    ;
++------------------------------------+---------------------+---------------------------+-------------------------------+-------------------------------+--------------------------------+--------------------------------+---------------------------+------------------------------------+-------------------------------+--------------------------------+------------------------------+-----------------------------------+----------------------------+---------------------------+----------------------------+--------------------------+---------------------------+--------------------------+--------------------------+------------------------------+---------------------------+-------------------------------+----------------------------+--------------------------------+-----------------------------+---------------------------------+-------------------------------+----------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                            ;
++-------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
+; Register name                                                           ; Reason for Removal                                                                  ;
++-------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
+; cmd_mot_pap:command_mot_pap|UT:UT_inst|n_coches_s[0..2]                 ; Stuck at GND due to stuck port data_in                                              ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[19] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[19] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[19] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[19] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[18] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[18] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[18] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[18] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[17] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[17] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[17] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[17] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[16] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[16] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[16] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[16] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[15] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[15] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[15] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[15] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[14] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[14] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[14] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[14] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[13] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[13] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[13] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[13] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[12] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[12] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[12] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[12] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[11] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[11] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[11] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[11] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[10] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[10] ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[10] ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[10] ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[9]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[9]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[9]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[9]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[8]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[8]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[8]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[8]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[7]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[7]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[7]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[7]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[6]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[6]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[6]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[6]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[5]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[5]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[5]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[5]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[4]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[4]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[4]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[4]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[3]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[3]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[3]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[3]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[2]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[2]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[2]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[2]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[1]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[1]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[1]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[1]  ;
+; controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn|current_cpt_s[0]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[0]  ;
+; controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn|current_cpt_s[0]  ; Merged with controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn|current_cpt_s[0]  ;
+; cmd_mot_pap:command_mot_pap|UT:UT_inst|moteur_s[0,1]                    ; Stuck at GND due to stuck port data_in                                              ;
+; cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s.AUTO_DEC_TOUR    ; Lost fanout                                                                         ;
+; cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s.AUTO_NEXT        ; Lost fanout                                                                         ;
+; cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s.AUTO_EN_LEFT     ; Stuck at GND due to stuck port data_in                                              ;
+; cmd_mot_pap:command_mot_pap|UC:UC_inst|current_state_s.AUTO_EN_RIGHT    ; Stuck at GND due to stuck port data_in                                              ;
+; Total Number of Removed Registers = 49                                  ;                                                                                     ;
++-------------------------------------------------------------------------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                           ;
++------------------------------------------------------+---------------------------+----------------------------------------------------+
+; Register name                                        ; Reason for Removal        ; Registers Removed due to This Register             ;
++------------------------------------------------------+---------------------------+----------------------------------------------------+
+; cmd_mot_pap:command_mot_pap|UT:UT_inst|n_coches_s[2] ; Stuck at GND              ; cmd_mot_pap:command_mot_pap|UT:UT_inst|moteur_s[0] ;
+;                                                      ; due to stuck port data_in ;                                                    ;
++------------------------------------------------------+---------------------------+----------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 88    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 88    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 32    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |mot_pap_top|cmd_mot_pap:command_mot_pap|UT:UT_inst|vitesse_s[0]                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |mot_pap_top|cmd_mot_pap:command_mot_pap|UC:UC_inst|next_state_s.AUTO_DEC_SPEED ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: cmd_mot_pap:command_mot_pap ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; simulation     ; false ; Enumerated                                      ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_l ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; simulation     ; false ; Enumerated                                        ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; simulation     ; false ; Enumerated                                                                ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_m ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; simulation     ; false ; Enumerated                                        ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_m|gen_top_sgn_mot:top_sgn ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; simulation     ; false ; Enumerated                                                                ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_r ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; simulation     ; false ; Enumerated                                        ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controller_mot_pap:ctrl_mot_r|gen_top_sgn_mot:top_sgn ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; simulation     ; false ; Enumerated                                                                ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "controller_mot_pap:ctrl_mot_r" ;
++--------------+-------+----------+-------------------------+
+; Port         ; Type  ; Severity ; Details                 ;
++--------------+-------+----------+-------------------------+
+; full_nhalf_i ; Input ; Info     ; Stuck at GND            ;
++--------------+-------+----------+-------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "controller_mot_pap:ctrl_mot_m" ;
++--------------+-------+----------+-------------------------+
+; Port         ; Type  ; Severity ; Details                 ;
++--------------+-------+----------+-------------------------+
+; full_nhalf_i ; Input ; Info     ; Stuck at GND            ;
++--------------+-------+----------+-------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "controller_mot_pap:ctrl_mot_l" ;
++--------------+-------+----------+-------------------------+
+; Port         ; Type  ; Severity ; Details                 ;
++--------------+-------+----------+-------------------------+
+; full_nhalf_i ; Input ; Info     ; Stuck at GND            ;
++--------------+-------+----------+-------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 31                          ;
+; cycloneiii_ff         ; 88                          ;
+;     CLR               ; 56                          ;
+;     ENA CLR           ; 32                          ;
+; cycloneiii_lcell_comb ; 121                         ;
+;     arith             ; 19                          ;
+;         2 data inputs ; 19                          ;
+;     normal            ; 102                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 13                          ;
+;         3 data inputs ; 35                          ;
+;         4 data inputs ; 46                          ;
+;                       ;                             ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 2.36                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+    Info: Processing started: Fri Jun 12 18:53:20 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off mot_pap_top -c mot_pap_top
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 5 of the 5 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/phase_manager.vhd
+    Info (12022): Found design unit 1: phase_manager-fsm File: /home/reds/csn/CSN_labo_moteur/src/phase_manager.vhd Line: 42
+    Info (12023): Found entity 1: phase_manager File: /home/reds/csn/CSN_labo_moteur/src/phase_manager.vhd Line: 28
+Info (12021): Found 2 design units, including 0 entities, in source file /home/reds/csn/CSN_labo_moteur/src/ilog_pkg.vhd
+    Info (12022): Found design unit 1: ilog_pkg File: /home/reds/csn/CSN_labo_moteur/src/ilog_pkg.vhd Line: 25
+    Info (12022): Found design unit 2: ilog_pkg-body File: /home/reds/csn/CSN_labo_moteur/src/ilog_pkg.vhd Line: 34
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/bit_filter.vhd
+    Info (12022): Found design unit 1: bit_filter-rtl File: /home/reds/csn/CSN_labo_moteur/src/bit_filter.vhd Line: 46
+    Info (12023): Found entity 1: bit_filter File: /home/reds/csn/CSN_labo_moteur/src/bit_filter.vhd Line: 31
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/gen_top_sgn_mot.vhd
+    Info (12022): Found design unit 1: gen_top_sgn_mot-behav File: /home/reds/csn/CSN_labo_moteur/src/gen_top_sgn_mot.vhd Line: 42
+    Info (12023): Found entity 1: gen_top_sgn_mot File: /home/reds/csn/CSN_labo_moteur/src/gen_top_sgn_mot.vhd Line: 28
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/cmd_mot_pap.vhd
+    Info (12022): Found design unit 1: cmd_mot_pap-struct File: /home/reds/csn/CSN_labo_moteur/src/cmd_mot_pap.vhd Line: 59
+    Info (12023): Found entity 1: cmd_mot_pap File: /home/reds/csn/CSN_labo_moteur/src/cmd_mot_pap.vhd Line: 29
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd
+    Info (12022): Found design unit 1: mot_pap_top-struct File: /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd Line: 63
+    Info (12023): Found entity 1: mot_pap_top File: /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd Line: 27
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/controller_mot_pap.vhd
+    Info (12022): Found design unit 1: controller_mot_pap-struct File: /home/reds/csn/CSN_labo_moteur/src/controller_mot_pap.vhd Line: 45
+    Info (12023): Found entity 1: controller_mot_pap File: /home/reds/csn/CSN_labo_moteur/src/controller_mot_pap.vhd Line: 27
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/UC.vhd
+    Info (12022): Found design unit 1: UC-fsm File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 73
+    Info (12023): Found entity 1: UC File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 26
+Info (12021): Found 2 design units, including 1 entities, in source file /home/reds/csn/CSN_labo_moteur/src/UT.vhd
+    Info (12022): Found design unit 1: UT-behave File: /home/reds/csn/CSN_labo_moteur/src/UT.vhd Line: 75
+    Info (12023): Found entity 1: UT File: /home/reds/csn/CSN_labo_moteur/src/UT.vhd Line: 28
+Info (12127): Elaborating entity "mot_pap_top" for the top level hierarchy
+Info (12129): Elaborating entity "cmd_mot_pap" using architecture "A:struct" for hierarchy "cmd_mot_pap:command_mot_pap" File: /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd Line: 140
+Info (12129): Elaborating entity "UC" using architecture "A:fsm" for hierarchy "cmd_mot_pap:command_mot_pap|UC:UC_inst" File: /home/reds/csn/CSN_labo_moteur/src/cmd_mot_pap.vhd Line: 231
+Warning (10492): VHDL Process Statement warning at UC.vhd(182): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 182
+Warning (10492): VHDL Process Statement warning at UC.vhd(182): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 182
+Warning (10492): VHDL Process Statement warning at UC.vhd(182): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 182
+Warning (10492): VHDL Process Statement warning at UC.vhd(192): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 192
+Warning (10492): VHDL Process Statement warning at UC.vhd(203): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 203
+Warning (10492): VHDL Process Statement warning at UC.vhd(213): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 213
+Warning (10492): VHDL Process Statement warning at UC.vhd(224): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 224
+Warning (10492): VHDL Process Statement warning at UC.vhd(234): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 234
+Warning (10492): VHDL Process Statement warning at UC.vhd(245): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 245
+Warning (10492): VHDL Process Statement warning at UC.vhd(255): signal "init_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 255
+Warning (10492): VHDL Process Statement warning at UC.vhd(257): signal "mode_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 257
+Warning (10492): VHDL Process Statement warning at UC.vhd(259): signal "start_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 259
+Warning (10492): VHDL Process Statement warning at UC.vhd(261): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 261
+Warning (10492): VHDL Process Statement warning at UC.vhd(261): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 261
+Warning (10492): VHDL Process Statement warning at UC.vhd(261): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 261
+Warning (10492): VHDL Process Statement warning at UC.vhd(273): signal "mode_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 273
+Warning (10492): VHDL Process Statement warning at UC.vhd(275): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 275
+Warning (10492): VHDL Process Statement warning at UC.vhd(275): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 275
+Warning (10492): VHDL Process Statement warning at UC.vhd(275): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 275
+Warning (10492): VHDL Process Statement warning at UC.vhd(275): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 275
+Warning (10492): VHDL Process Statement warning at UC.vhd(277): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 277
+Warning (10492): VHDL Process Statement warning at UC.vhd(277): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 277
+Warning (10492): VHDL Process Statement warning at UC.vhd(277): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 277
+Warning (10492): VHDL Process Statement warning at UC.vhd(277): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 277
+Warning (10492): VHDL Process Statement warning at UC.vhd(279): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 279
+Warning (10492): VHDL Process Statement warning at UC.vhd(279): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 279
+Warning (10492): VHDL Process Statement warning at UC.vhd(279): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 279
+Warning (10492): VHDL Process Statement warning at UC.vhd(279): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 279
+Warning (10492): VHDL Process Statement warning at UC.vhd(281): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 281
+Warning (10492): VHDL Process Statement warning at UC.vhd(281): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 281
+Warning (10492): VHDL Process Statement warning at UC.vhd(281): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 281
+Warning (10492): VHDL Process Statement warning at UC.vhd(282): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 282
+Warning (10492): VHDL Process Statement warning at UC.vhd(282): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 282
+Warning (10492): VHDL Process Statement warning at UC.vhd(293): signal "mode_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 293
+Warning (10492): VHDL Process Statement warning at UC.vhd(295): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 295
+Warning (10492): VHDL Process Statement warning at UC.vhd(295): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 295
+Warning (10492): VHDL Process Statement warning at UC.vhd(295): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 295
+Warning (10492): VHDL Process Statement warning at UC.vhd(297): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 297
+Warning (10492): VHDL Process Statement warning at UC.vhd(297): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 297
+Warning (10492): VHDL Process Statement warning at UC.vhd(297): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 297
+Warning (10492): VHDL Process Statement warning at UC.vhd(297): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 297
+Warning (10492): VHDL Process Statement warning at UC.vhd(309): signal "mode_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 309
+Warning (10492): VHDL Process Statement warning at UC.vhd(311): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 311
+Warning (10492): VHDL Process Statement warning at UC.vhd(311): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 311
+Warning (10492): VHDL Process Statement warning at UC.vhd(311): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 311
+Warning (10492): VHDL Process Statement warning at UC.vhd(311): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 311
+Warning (10492): VHDL Process Statement warning at UC.vhd(313): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 313
+Warning (10492): VHDL Process Statement warning at UC.vhd(313): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 313
+Warning (10492): VHDL Process Statement warning at UC.vhd(313): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 313
+Warning (10492): VHDL Process Statement warning at UC.vhd(313): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 313
+Warning (10492): VHDL Process Statement warning at UC.vhd(315): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 315
+Warning (10492): VHDL Process Statement warning at UC.vhd(315): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 315
+Warning (10492): VHDL Process Statement warning at UC.vhd(315): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 315
+Warning (10492): VHDL Process Statement warning at UC.vhd(315): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 315
+Warning (10492): VHDL Process Statement warning at UC.vhd(326): signal "mode_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 326
+Warning (10492): VHDL Process Statement warning at UC.vhd(328): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 328
+Warning (10492): VHDL Process Statement warning at UC.vhd(328): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 328
+Warning (10492): VHDL Process Statement warning at UC.vhd(328): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 328
+Warning (10492): VHDL Process Statement warning at UC.vhd(330): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 330
+Warning (10492): VHDL Process Statement warning at UC.vhd(330): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 330
+Warning (10492): VHDL Process Statement warning at UC.vhd(330): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 330
+Warning (10492): VHDL Process Statement warning at UC.vhd(330): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 330
+Warning (10492): VHDL Process Statement warning at UC.vhd(341): signal "mode_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 341
+Warning (10492): VHDL Process Statement warning at UC.vhd(343): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 343
+Warning (10492): VHDL Process Statement warning at UC.vhd(343): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 343
+Warning (10492): VHDL Process Statement warning at UC.vhd(343): signal "run_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 343
+Warning (10492): VHDL Process Statement warning at UC.vhd(344): signal "run_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 344
+Warning (10492): VHDL Process Statement warning at UC.vhd(344): signal "run_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 344
+Warning (10492): VHDL Process Statement warning at UC.vhd(363): signal "fin_de_tour_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 363
+Warning (10492): VHDL Process Statement warning at UC.vhd(365): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 365
+Warning (10492): VHDL Process Statement warning at UC.vhd(365): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 365
+Warning (10492): VHDL Process Statement warning at UC.vhd(373): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 373
+Warning (10492): VHDL Process Statement warning at UC.vhd(373): signal "moteur_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 373
+Warning (10492): VHDL Process Statement warning at UC.vhd(375): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 375
+Warning (10492): VHDL Process Statement warning at UC.vhd(375): signal "moteur_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 375
+Warning (10492): VHDL Process Statement warning at UC.vhd(377): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 377
+Warning (10492): VHDL Process Statement warning at UC.vhd(377): signal "moteur_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 377
+Warning (10492): VHDL Process Statement warning at UC.vhd(405): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 405
+Warning (10492): VHDL Process Statement warning at UC.vhd(405): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 405
+Warning (10492): VHDL Process Statement warning at UC.vhd(405): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 405
+Warning (10492): VHDL Process Statement warning at UC.vhd(415): signal "dernier_tour_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 415
+Warning (10492): VHDL Process Statement warning at UC.vhd(415): signal "vitesse_max_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 415
+Warning (10492): VHDL Process Statement warning at UC.vhd(417): signal "dernier_tour_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 417
+Warning (10492): VHDL Process Statement warning at UC.vhd(417): signal "vitesse_min_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 417
+Warning (10492): VHDL Process Statement warning at UC.vhd(436): signal "tour_complet_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 436
+Warning (10492): VHDL Process Statement warning at UC.vhd(438): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 438
+Warning (10492): VHDL Process Statement warning at UC.vhd(440): signal "fin_seq_auto_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 440
+Warning (10492): VHDL Process Statement warning at UC.vhd(457): signal "init_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 457
+Warning (10492): VHDL Process Statement warning at UC.vhd(457): signal "cap_m_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 457
+Warning (10492): VHDL Process Statement warning at UC.vhd(457): signal "cap_l_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 457
+Warning (10492): VHDL Process Statement warning at UC.vhd(457): signal "cap_r_i" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/reds/csn/CSN_labo_moteur/src/UC.vhd Line: 457
+Info (12129): Elaborating entity "UT" using architecture "A:behave" for hierarchy "cmd_mot_pap:command_mot_pap|UT:UT_inst" File: /home/reds/csn/CSN_labo_moteur/src/cmd_mot_pap.vhd Line: 268
+Info (12129): Elaborating entity "controller_mot_pap" using architecture "A:struct" for hierarchy "controller_mot_pap:ctrl_mot_l" File: /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd Line: 167
+Info (12129): Elaborating entity "gen_top_sgn_mot" using architecture "A:behav" for hierarchy "controller_mot_pap:ctrl_mot_l|gen_top_sgn_mot:top_sgn" File: /home/reds/csn/CSN_labo_moteur/src/controller_mot_pap.vhd Line: 86
+Info (12129): Elaborating entity "phase_manager" using architecture "A:fsm" for hierarchy "controller_mot_pap:ctrl_mot_l|phase_manager:MSS_stepper" File: /home/reds/csn/CSN_labo_moteur/src/controller_mot_pap.vhd Line: 97
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "err_o" is stuck at GND File: /home/reds/csn/CSN_labo_moteur/src/mot_pap_top.vhd Line: 57
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 187 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 15 input pins
+    Info (21059): Implemented 16 output pins
+    Info (21061): Implemented 156 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 94 warnings
+    Info: Peak virtual memory: 983 megabytes
+    Info: Processing ended: Fri Jun 12 18:53:30 2026
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:19
+
+
