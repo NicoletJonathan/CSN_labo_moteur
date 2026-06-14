@@ -270,7 +270,9 @@ BEGIN
 			WHEN MAN_LEFT => -- can switch to MAN_BOTH if right boutton is pressed, or to MAN_STOP
 			en_mot_change_o <= '1';
 			en_mot_l_o <= '1';
-			IF (mode_i = '1') THEN
+            IF (init_i = '1') THEN
+				next_state_s <= INIT_SEQUENCE;
+			ELSIF (mode_i = '1') THEN
 				en_mot_l_o <= '0';
 				next_state_s <= INIT_REQUEST;
 			ELSIF (cap_m_i = '1' OR run_l_i = '0' OR run_m_i = '1') THEN
@@ -286,7 +288,9 @@ BEGIN
 			WHEN MAN_RIGHT => -- can switch to MAN_BOTH if left boutton is pressed, or to MAN_STOP
 			en_mot_change_o <= '1';
 			en_mot_r_o <= '1';
-			IF (mode_i = '1') THEN
+            IF (init_i = '1') THEN
+				next_state_s <= INIT_SEQUENCE;
+			ELSIF (mode_i = '1') THEN
 				en_mot_r_o <= '0';
 				next_state_s <= INIT_REQUEST;
 			ELSIF (cap_m_i = '1' OR run_r_i = '0' OR run_m_i = '1') THEN
@@ -304,7 +308,9 @@ BEGIN
 			en_mot_change_o <= '1';
 			en_mot_l_o <= '1';
 			en_mot_r_o <= '1';
-			IF (mode_i = '1') THEN
+            IF (init_i = '1') THEN
+				next_state_s <= INIT_SEQUENCE;
+			ELSIF (mode_i = '1') THEN
 				en_mot_l_o <= '0';
 				en_mot_r_o <= '0';
 				next_state_s <= INIT_REQUEST;
@@ -327,7 +333,9 @@ BEGIN
 			WHEN MAN_MIDDLE => -- can only switch to MAN_STOP
 			en_mot_change_o <= '1';
 			en_mot_m_o <= '1';
-			IF (mode_i = '1') THEN
+            IF (init_i = '1') THEN
+				next_state_s <= INIT_SEQUENCE;
+			ELSIF (mode_i = '1') THEN
 				en_mot_m_o <= '0';
 				next_state_s <= INIT_REQUEST;
 			ELSIF (cap_l_i = '1' OR cap_r_i = '1' OR run_l_i = '1'
