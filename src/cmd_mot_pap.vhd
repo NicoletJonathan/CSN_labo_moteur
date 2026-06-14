@@ -204,9 +204,9 @@ architecture struct of cmd_mot_pap is
 
 begin
     --| Bloc de pre-traitement des entrees |------------------------------------
-
+    -- synchronise toutes les entrées (saud clk et rst)
     reg_fut_s <= cap_l_i & cap_m_i & cap_r_i & mode_i & start_i & init_i & nb_tour_i & run_l_i & run_m_i & run_r_i;
- 
+    
     synchro : process (clk_i, rst_i)
     begin
         if rst_i = '1' then
