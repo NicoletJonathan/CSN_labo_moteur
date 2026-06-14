@@ -517,6 +517,4 @@ BEGIN
 
 	END PROCESS dec_fut_sort;
 
-	--| Outputs affectation |--------------------------------------------------
-
 END fsm;
