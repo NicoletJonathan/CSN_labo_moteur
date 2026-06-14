@@ -6,8 +6,8 @@
 --
 -- Description  : UT pour la commande des 3 moteurs pas-a-pas
 --
--- Auteur       : ....
--- Date         : 21.05.2024
+-- Auteur       : Jonathan Nicolet & Robin Forestier
+-- Date         : 14.06.2026
 -- Version      : 1.0
 --
 -- Utilise dans : Labo moteur pas-à-pas (MSS cplx)
@@ -107,7 +107,7 @@ begin
 
         elsif rising_edge(clk_i) then
             
-            -- 1. Bascules D d'activation des moteurs
+            -- Bascules D d'activation des moteurs
             if en_mot_change_i = '1' then
                 en_l_o <= en_mot_l_i;
             end if;
@@ -120,28 +120,28 @@ begin
                 en_r_o <= en_mot_r_i;
             end if;
 
-            -- 2. Compteur "tour"
+            -- Compteur "tour"
             if load_tour_i = '1' then
                 tour_s <= unsigned(nb_tour_i);
             elsif dec_tour_i = '1' then
                 tour_s <= tour_s - 1;
             end if;
 
-            -- 3. Compteur "moteur"
+            -- Compteur "moteur"
             if load_moteur_i = '1' then
                 moteur_s <= (others => '0'); -- Charge 0 selon schéma
             elsif inc_moteur_i = '1' then
                 moteur_s <= moteur_s + 1;
             end if;
 
-            -- 4. Compteur "n_coches"
+            -- Compteur "n_coches"
             if load_n_encoches_i = '1' then
                 n_coches_s <= (others => '0'); -- Charge 0 selon schéma
             elsif inc_n_encoches_i = '1' then
                 n_coches_s <= n_coches_s + 1;
             end if;
 
-            -- 5. Compteur "vitesse"
+            -- Compteur "vitesse"
             if load_vitesse_i = '1' then
                 vitesse_s <= (others => '0'); -- Charge 0 selon schéma
             elsif inc_vitesse_i = '1' then
@@ -159,8 +159,9 @@ begin
     vitesse_max_o <= '1' when vitesse_s = 3 else '0';
     vitesse_min_o <= '1' when vitesse_s = 0 else '0';
 	
-	 vitesse_o <= std_logic_vector(vitesse_s);
-	 moteur_o <= std_logic_vector(moteur_s);
+	vitesse_o <= std_logic_vector(vitesse_s);
+	moteur_o <= std_logic_vector(moteur_s);
+
     -- Comparateurs Tours et Coches
     fin_de_tour_int_s <= '1' when tour_s = 0 else '0';
     dernier_tour_o    <= '1' when tour_s = 1 else '0';
@@ -175,8 +176,8 @@ begin
     -- Selon le schéma, mode_i sélectionne entre '0' et le bit de poids faible de s_moteur
     -- Cette sortie pilote dir_mot_m_o et dir_mot_l_o. (dir_r_o est forcé à '0' par sécurité).
     
-    dir_m_o <= std_logic(moteur_s(0)) when mode_i = '1' else '0';
-    dir_l_o <= std_logic(moteur_s(0)) when mode_i = '1' else '0';
-    dir_r_o <= '0';
+    dir_m_o <= '1' when (mode_i = '1' and moteur_s = 0) else '0';
+    dir_l_o <= '0';
+    dir_r_o <= '1' when (mode_i = '1' and moteur_s = 2) else '0';
 
 end behave;

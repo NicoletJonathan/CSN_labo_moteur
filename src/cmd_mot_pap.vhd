@@ -16,7 +16,7 @@
 -- Version   Auteur      Date               Description
 -- 1.0       LFR         06.09.2022         First version.
 -- 2.0       LFR         16.02.2024         2024 version for SysLog2 (MSS cplx)
---
+-- 3.0       FOR         14.06.2026         Description entrées et sorties
 -------------------------------------------------------------------------------
 
 --| Library |------------------------------------------------------------------
